@@ -7,15 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
   integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/31f38c55fe.js" crossorigin="anonymous"></script>
   {% block titulo %}
   <title>Quien Pago?</title>
   {% endblock %}
-
 </head>
 
-
-<body >
-
+<body>
   <nav  class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="http://127.0.0.1:8000/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -42,19 +40,40 @@
 
 {% block body %}
 
-  <div class="container text-center">
+  <div class="container text-center" style="padding: 50px; height: auto">
     <div class="row h-100">
-      <div class="col-sm-12 my-auto">
+      <div class="col">
         <a href="http://127.0.0.1:8000/usuarios/lista/" type="button" class="btn btn-dark">Usuario</a>
         <a href="http://127.0.0.1:8000/usuarios/administrador/" type="button" class="btn btn-dark">Usuario Admin</a>
-      </div>
-      <div class="col">
-        <a href="http://127.0.0.1:8000/admin/" type="button" class="btn btn-dark">Admin</a>
+        <a href="http://127.0.0.1:8000/admin/" type="button" class="btn btn-dark">Panel Admin</a>
       </div>
     </div>
-</body>
+  </div>
 
 {% endblock %}
+</body>
+
+
+<footer class="text-center text-white" style="margin-top: 10rem; background-color: #f1f1f1; position: relative; bottom:0; width: 100%;">
+  <div class="container pt-4">
+    <section class="mb-4">
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://www.instagram.com/" target="_blank"
+        role="button" data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://Linkedin.com.ar" target="_blank"
+        role="button" data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/dariosbarbati/ProyectoFinal"
+        target="_blank" role="button" data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+
+    </section>
+  </div>
+
+  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyrigh: ProyectoFinal - CoderHouse
+  </div>
+</footer>
 
 
 

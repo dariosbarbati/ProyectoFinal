@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from Servicios.models import Meses, Servicios
-from Servicios.form import Formulario_mes
-from Servicios.form import Formulario_servicio
+from Servicios.models import Meses, Servicios, Usuarios
+from Servicios.form import Formulario_servicio, Formulario_mes, Formulario_usuario
 
 
 def lista_meses(resquest):
@@ -23,7 +22,7 @@ def actualizar_mes(request, pk):
         form = Formulario_mes(request.POST)
         if form.is_valid():
             mes = Meses.objects.get(id=pk)
-            # mes.nombre = form.cleaned_data['nombre']
+           # mes.nombre = form.cleaned_data['nombre']
             mes.precio = form.cleaned_data['precio']
             mes.pagado = form.cleaned_data['pagado']
             mes.fecha = form.cleaned_data['fecha']
@@ -87,3 +86,22 @@ def agregar_servicio(request):
         form = Formulario_servicio()
         context = {'form':form}
         return render(request, 'agregar-servicio.html', context=context)
+
+
+def agregar_usuario(request):
+    if request.method == 'POST':
+        form = Formulario_usuario(request.POST)
+        if form.is_valid():
+            Usuarios.objects.create(
+                usuario = form.cleaned_data['usuario'],
+                mail = form.cleaned_data['mail'],
+                contrasena = form.cleaned_data['contrasena'],
+                habilitar = form.cleaned_data['habilitar']
+            )
+            return redirect(lista_meses_admin)
+
+
+    if request.method == 'GET':
+        form = Formulario_usuario()
+        context = {'form':form}
+        return render(request, 'agregar-usuario.html', context=context)

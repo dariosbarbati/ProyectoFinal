@@ -18,3 +18,13 @@ class Servicios(models.Model):
 
     def __str__(self):
         return self.servicio
+
+
+class Usuarios(models.Model):
+    usuario = models.CharField(max_length=40)
+    mail =  models.EmailField()
+    contrasena =models.CharField(max_length=8)
+    habilitar = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.usuario
