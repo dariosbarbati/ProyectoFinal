@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block titulo %}
+    <title>Actualizar Mes</title>
+    {% endblock %}
+
+</head>
+
+{% block body %}
+
+<body >
+
+    <form style="margin: 15px ;" action="" method="POST">
+        {% csrf_token %}
+
+        <table>
+
+            {{form.as_table}}
+
+        </table>
+        <div style="align-content: center;">
+            <p><input class="btn btn-primary" type="submit" value="Enviar"></p>
+            <a href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+        </div>
+    </form>
+
+</body>
+
+{% endblock %}
+
+</html>

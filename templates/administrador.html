@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block titulo %}
+    <title>Administrador</title>
+    {% endblock %}
+
+</head>
+
+{% block body %}
+
+<body>
+    <div class="container text-center m-5">
+        <div class="row" style="height: 500px">
+            <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
+                {% for servicio in servicios %}
+                <div class="card" style="margin: 10px;">
+                    <a href="/usuarios/info-mes/{{servicio.servicio}}" type="button"
+                    class="btn btn-dark">{{servicio.servicio}}</a>
+                </div>
+                {% endfor %}
+                <div class="card" style="margin:10px">
+                    <a href="/usuarios/agregar-servicio/" type="button" class="btn-warning">Agregar Servicio</a>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <div class="row">
+                    <div style="margin-left: 50px;" class="row" style="height: 800px;">
+
+                        {% for mes in meses %}
+                        <div class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">
+                            <div class="card-body">
+                                <h5 class="card-title">{{mes.nombre}}</h5>
+                                {% if mes.pagado %}
+                                <h2 style="color: green">PAGADO</h2>
+                                {% else %}
+                                <h2 style="color: red">IMPAGO</h2>
+                                {% endif %}
+                                <a href="/usuarios/actualizar-mes/{{mes.id}}" class="btn btn-primary">Editar</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+</html>

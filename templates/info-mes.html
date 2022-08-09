@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block titulo %}
+    <title>Informacion Mes</title>
+    {% endblock %}
+
+</head>
+
+{% block body %}
+
+<body>
+
+    <form style="margin: 40px; align-content: center;"   action="" method="POST">
+        {% csrf_token %}
+        
+        <table class="card">
+        
+            {{form.as_table}}
+        
+        </table>
+        
+        <a href="/usuarios/lista/" class="btn btn-primary">Volver</a>
+        
+        </form>
+
+</body>
+
+{% endblock %}
+
+</html>
