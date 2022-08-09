@@ -22,14 +22,14 @@
     <form style="margin: 40px; align-content: center;"   action="" method="POST">
         {% csrf_token %}
         
-        <table class="card">
+        <table  style= "width: fit-content; margin: auto;" class="card">
         
             {{form.as_table}}
         
-        </table>
+        </table>        
         
-        <a href="/usuarios/lista/" class="btn btn-primary">Volver</a>
-        
+        <a style="margin-left: 600px; margin-top: 10px;" href="/usuarios/lista/" class="btn btn-primary">Volver</a>
+
         </form>
 
 </body>
