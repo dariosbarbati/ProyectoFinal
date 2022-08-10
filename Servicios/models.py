@@ -9,6 +9,10 @@ class Meses(models.Model):
     def __str__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name = 'Mes'
+        verbose_name_plural = 'Meses'    
+
 
 class Servicios(models.Model):
     servicio = models.CharField(max_length=40)
@@ -19,6 +23,10 @@ class Servicios(models.Model):
     def __str__(self):
         return self.servicio
 
+    class Meta:
+        verbose_name = 'Servicio'
+        verbose_name_plural = 'Servicios'
+
 
 class Usuarios(models.Model):
     usuario = models.CharField(max_length=40)
@@ -28,3 +36,7 @@ class Usuarios(models.Model):
 
     def __str__(self):
         return self.usuario
+
+    class Meta:
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'

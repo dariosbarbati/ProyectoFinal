@@ -105,3 +105,6 @@ def agregar_usuario(request):
         form = Formulario_usuario()
         context = {'form':form}
         return render(request, 'agregar-usuario.html', context=context)
+
+def en_construccion (request):
+    return render(request , "en-construccion.html", context={})
