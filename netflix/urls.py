@@ -22,5 +22,6 @@ from netflix.view import principal
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', principal, name='home'),
-    path('usuarios/', include('Servicios.urls'))
+    path('usuarios/', include('Servicios.urls')),
+    path('users/', include('users.urls'))
 ]
