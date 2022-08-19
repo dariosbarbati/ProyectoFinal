@@ -1,0 +1,31 @@
+{% extends 'login.html' %}
+
+{% block titulo %}
+    <title>Registro</title>
+{% endblock %}
+
+<body>
+    
+{% block body %}
+
+<form style="margin: 2rem;" action="" method="POST">
+{% csrf_token %}
+
+    <table>
+
+        {{form.as_table}}
+
+    </table>
+
+    <p><input type="submit" value="Registrate!!"></p>
+
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    
+{% endblock %}
+</body>
+
+</html>

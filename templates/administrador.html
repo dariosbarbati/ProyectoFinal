@@ -1,23 +1,14 @@
-{% extends "index.html" %}
+{% extends "login.html" %}
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% block titulo %}
+{% block titulo %}
     <title>Administrador</title>
-    {% endblock %}
+{% endblock %}
 
-</head>
-
-{% block body %}
 
 <body>
+ 
+{% block body %}
+
     <div class="container text-center m-5">
         <div class="row" style="height: 400px">
             <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
@@ -27,12 +18,16 @@
                     class="btn btn-dark">{{servicio.servicio}}</a>
                 </div>
                 {% endfor %}
+                                
+                {% if request.user.is_superuser %}
                 <div class="card" style="margin:10px">
                     <a href="/usuarios/agregar-servicio/" type="button" class="btn-warning">Agregar Servicio</a>
                 </div>
                 <div class="card" style="margin:10px">
                     <a href="/usuarios/agregar-usuario/" type="button" class="btn-warning">Agregar Usuario</a>
                 </div>
+                {% endif %}
+
             </div>
 
             <div class="col-10">
@@ -48,7 +43,9 @@
                                 {% else %}
                                 <h2 style="color: red">IMPAGO</h2>
                                 {% endif %}
-                                <a href="/usuarios/actualizar-mes/{{mes.id}}" class="btn btn-primary">Editar</a>
+                                {% if request.user.is_superuser %}
+                                    <a href="/usuarios/actualizar-mes/{{mes.id}}" class="btn btn-primary">Editar</a>
+                                {% endif %}                           
                             </div>
                         </div>
                         {% endfor %}
@@ -57,8 +54,9 @@
             </div>
         </div>
     </div>
+{% endblock %}    
 </body>
 
-{% endblock %}
+
 
 </html>

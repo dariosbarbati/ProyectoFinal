@@ -17,11 +17,11 @@ Including another URLconf
 from unicodedata import name
 from django.contrib import admin
 from django.urls import path, include
-from netflix.view import principal
+from users.views import login_request
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', principal, name='home'),
+    path('', login_request, name='home'),
     path('usuarios/', include('Servicios.urls')),
     path('users/', include('users.urls'))
 ]

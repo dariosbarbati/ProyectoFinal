@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib.auth import login, logout, authenticate
-
-# from users.forms import User_registration_form
+from Servicios.views import lista_meses_admin, lista_meses
+from users.forms import User_registration_form
 
 
 def login_request(request):
@@ -18,9 +18,8 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                
-                context = {'message':f'Bienvenido {username}!! :D'}
-                return render(request, 'index.html', context = context)
+                context = {'usuario': {user}}
+                return redirect(lista_meses_admin) 
 
         form = AuthenticationForm()
         return render(request, 'login.html', {'error': 'Formulário inválido', 'form': form})
@@ -29,18 +28,18 @@ def login_request(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = User_registration_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('login')
-#         else:
-#             context = {'errors':form.errors}
-#             form = User_registration_form()
-#             context['form'] = form
-#             return render(request, 'users/register.html', context)
+def registrar(request):
+    if request.method == 'POST':
+        form = User_registration_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(lista_meses_admin) 
+        else:
+            context = {'error':form.errors}
+            form = User_registration_form()
+            context['form'] = form
+            return render(request, 'registrar.html', context)
 
-#     elif request.method == 'GET':
-#         form = User_registration_form()
-#         return render(request, 'users/register.html', {'form': form})
+    elif request.method == 'GET':
+        form = User_registration_form()
+        return render(request, 'registrar.html', {'form': form})

@@ -4,8 +4,9 @@ from django import forms
 class Formulario_mes(forms.Form):
     nombre = forms.CharField(max_length=40) #, disabled=True
     precio = forms.FloatField()
-    fecha = forms.DateField()
     pagado = forms.BooleanField(required=False)
+    fecha = forms.DateField()
+
 
 class Formulario_servicio(forms.Form):
     servicio = forms.CharField(max_length=40) 

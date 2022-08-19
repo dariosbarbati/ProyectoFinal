@@ -7,7 +7,7 @@ def lista_meses(resquest):
     data=Meses.objects.all()
     data2=Servicios.objects.all()
     context={"meses": data, "servicios": data2}
-    return  render(resquest,"usuario.html",context=context) 
+    return  render(resquest,"administrador.html",context=context) 
 
 
 def lista_meses_admin(request):
