@@ -8,21 +8,19 @@
 <body>
     
 {% block body %}
+
+<div class="card">
     <form style="margin: 40px; align-content: center;"   action="" method="POST">
         {% csrf_token %}
-        
         <table  style= "width: fit-content; margin: auto;" class="card">
-        
             {{form.as_table}}
-        
         </table>        
-        
-        <a style="margin-left: 600px; margin-top: 10px;" href="/usuarios/lista/" class="btn btn-primary">Volver</a>
-
-        </form>
-
+        <a style="margin-left: 600px; margin-top: 10px;" href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+    </form>
+</div>
 </body>
 
+<br>
 {% endblock %}
 
 </html>

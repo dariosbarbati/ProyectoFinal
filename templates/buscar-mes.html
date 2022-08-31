@@ -8,11 +8,11 @@
 <body>
 
 {% block body %}   
-
-    {% for mes in mes %}                      
-    <div  class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">                        
+    {% for mes in mes %}                  
+    <div  class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; margin: 3rem;">                        
         <div class="card-body">
             <h5 class="card-title">{{mes.nombre}}</h5>
+            <h5 class="card-title">{{mes.MesesServicio}}</h5>
             {% if mes.pagado %}
             <h2 style="color: green">PAGADO</h2>
             <h5 class="card-title">Monto: {{mes.precio}}</h5>
@@ -21,6 +21,11 @@
             {% endif %}
         </div>
     </div>
+
     {% endfor %}
+
+
+
+    <a style="margin-left: 3rem;" href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
 </body>
 {% endblock %}

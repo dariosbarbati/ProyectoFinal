@@ -1,20 +1,30 @@
+from datetime import date
+from re import search
 from django.shortcuts import render, redirect
-from Servicios.models import Meses, Servicios, Usuarios
-from Servicios.form import Formulario_servicio, Formulario_mes, Formulario_usuario
-
+from Servicios.models import Meses, Servicios
+from Servicios.form import Formulario_servicio, Formulario_mes
+listameses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
 
 def lista_meses(resquest):
     data=Meses.objects.all()
     data2=Servicios.objects.all()
     context={"meses": data, "servicios": data2}
-    return  render(resquest,"administrador.html",context=context) 
+    return  render(resquest,"administrador-mes.html",context=context) 
 
 
 def lista_meses_admin(request):
     data=Meses.objects.all()
     data2=Servicios.objects.all()
-    context={"meses": data, "servicios": data2}
-    return  render(request,"administrador.html",context=context) 
+    context={"meses": data[0:12], "servicios": data2}  #DEVUELVO UNICAMENTE LOS PRIMEROS 12 MESES
+    return  render(request,"administrador-mes.html",context=context) 
+
+def lista_meses_admin_mes(request,pk):
+    data=Meses.objects.filter(MesesServicio= pk)
+    data2=Servicios.objects.all()
+    data3=Servicios.objects.filter(id= pk)
+    print(data3)
+    context={"activo": data3, "meses": data, "servicios": data2 }
+    return  render(request,"administrador-mes.html",context=context) 
 
 
 def actualizar_mes(request, pk):
@@ -22,7 +32,6 @@ def actualizar_mes(request, pk):
         form = Formulario_mes(request.POST)
         if form.is_valid():
             mes = Meses.objects.get(id=pk)
-           # mes.nombre = form.cleaned_data['nombre']
             mes.precio = form.cleaned_data['precio']
             mes.pagado = form.cleaned_data['pagado']
             mes.fecha = form.cleaned_data['fecha']
@@ -55,6 +64,11 @@ def ver_pagos(request):
     context={"meses": data, "servicios": data2}
     return render(request, 'ver-pagos.html', context=context)
 
+def ver_servicios(request):
+    dato=Servicios.objects.all()
+    context={"servicios": dato}
+    return render(request, 'lista-eliminar-servicio.html', context=context)
+
 def info_mes(request, pk):
     if request.method == 'GET':
         meses = Meses.objects.get(id=pk)
@@ -73,14 +87,23 @@ def agregar_servicio(request):
     if request.method == 'POST':
         form = Formulario_servicio(request.POST)
         if form.is_valid():
-            Servicios.objects.create(
+            s = Servicios.objects.create(
                 servicio = form.cleaned_data['servicio'],
                 precio = form.cleaned_data['precio'],
                 descripcion = form.cleaned_data['descripcion'],
                 habilitar = form.cleaned_data['habilitar']
             )
-            return redirect(lista_meses_admin)
+            for listames in listameses:
+                m = Meses.objects.create(
+                nombre = listames,
+                precio = 12,
+                pagado = False,
+                fecha = date.today(),
+                )
+                m.MesesServicio = Servicios.objects.get(pk = s.id)
+                m.save()
 
+            return redirect(lista_meses_admin)
 
     if request.method == 'GET':
         form = Formulario_servicio()
@@ -88,23 +111,17 @@ def agregar_servicio(request):
         return render(request, 'agregar-servicio.html', context=context)
 
 
-def agregar_usuario(request):
-    if request.method == 'POST':
-        form = Formulario_usuario(request.POST)
-        if form.is_valid():
-            Usuarios.objects.create(
-                usuario = form.cleaned_data['usuario'],
-                mail = form.cleaned_data['mail'],
-                contrasena = form.cleaned_data['contrasena'],
-                habilitar = form.cleaned_data['habilitar']
-            )
-            return redirect(lista_meses_admin)
-
-
-    if request.method == 'GET':
-        form = Formulario_usuario()
-        context = {'form':form}
-        return render(request, 'agregar-usuario.html', context=context)
-
 def en_construccion (request):
     return render(request , "en-construccion.html", context={})
+
+def eliminar_servicio(request,pk):
+    if request.method == 'POST':
+            servicio = Servicios.objects.get(pk=pk)
+            servicio.delete()         
+            return redirect(lista_meses_admin)
+
+    if request.method == 'GET':
+        dato=Servicios.objects.get(id=pk)
+        context={"servicio": dato}
+        print("por get")   
+        return render(request, 'eliminar-servicio.html', context=context)

@@ -14,17 +14,17 @@
             <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
                 {% for servicio in servicios %}
                 <div class="card" style="margin: 10px;">
-                    <a href="/usuarios/en-construccion" type="button"
+                    <a href="/usuarios/administrador-mes/{{servicio.id}}" type="button"
                     class="btn btn-dark">{{servicio.servicio}}</a>
                 </div>
                 {% endfor %}
                                 
                 {% if request.user.is_superuser %}
                 <div class="card" style="margin:10px">
-                    <a href="/usuarios/agregar-servicio/" type="button" class="btn-warning">Agregar Servicio</a>
+                    <a href="/usuarios/agregar-servicio/" type="button" class="btn btn-success">Agregar Servicio</a>
                 </div>
                 <div class="card" style="margin:10px">
-                    <a href="/usuarios/agregar-usuario/" type="button" class="btn-warning">Agregar Usuario</a>
+                    <a href="/usuarios/lista-eliminar-servicio/" type="button" class="btn btn-danger">Eliminar Servicio</a>
                 </div>
                 {% endif %}
 
@@ -43,8 +43,11 @@
                                 {% else %}
                                 <h2 style="color: red">IMPAGO</h2>
                                 {% endif %}
+                                
                                 {% if request.user.is_superuser %}
                                     <a href="/usuarios/actualizar-mes/{{mes.id}}" class="btn btn-primary">Editar</a>
+                                {% else %}
+                                    <a href="/usuarios/administrador-mes/{{mes.id}}" class="btn btn-primary">Detalle</a>
                                 {% endif %}                           
                             </div>
                         </div>

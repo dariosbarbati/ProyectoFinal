@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/31f38c55fe.js" crossorigin="anonymous"></script>
 
   {% block titulo %}
-  <title>Quien Pago? Login</title>
+  <title>Quien Pago?</title>
   {% endblock %}
 
 </head>
@@ -28,28 +28,30 @@
       <ul class="navbar-nav mr-auto">
         {% if request.user.is_authenticated %}
         <li class="nav-item active">
-          <a class="nav-link" href="/usuarios/ver-pagos/">Ver Pago</a>
+          <a class="nav-link" href="/usuarios/ver-pagos/">Ver Pagos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Acerca de</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/users/logout/">Logout</a>
+          <a class="nav-link" href="/users/logout/">Salir</a>
         </li>
         {% else %}
         <li class="nav-item active">
           <a class="nav-link" href="/users/login/">Login</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/users/registrar/">Registrar</a>
+          <a class="nav-link" href="/users/registrar/">Registrate</a>
         </li>
         {% endif %}
       </ul>
-
+      {% if request.user.is_authenticated %}
       <form class="form-inline my-2 my-lg-0" action="/usuarios/buscar-mes/" method="GET">
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar Mes" aria-label="Search" name='search'>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
+      <a class="nav-link" href="/admin/">*Panel Admin*</a>
+      {% endif %}
     </div>
   </nav>
 
@@ -68,7 +70,7 @@
 
       <div style="margin: 1rem; margin-left: 3rem;">
         <spam><input type="submit" class="btn btn-primary value=" Iniciar sesion></spam>
-        <a href="/users/registrar/" class="btn btn-primary">Registrar</a>
+        <a href="/users/registrar/" class="btn btn-primary">Registrate</a>
       </div>
 
     </form>
@@ -82,7 +84,7 @@
 </body>
 
 <footer class="text-center text-white"
-  style="margin-top: 10rem; background-color: #f1f1f1; position: relative; bottom:0; width: 100%;">
+  style="margin-top: 8rem; background-color: #f1f1f1; position: relative; bottom:0; width: 100%;">
   <div class="container pt-4">
     <section class="mb-4">
 

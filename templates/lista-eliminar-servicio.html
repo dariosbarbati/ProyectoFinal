@@ -1,0 +1,33 @@
+{% extends "login.html" %}
+
+{% block titulo %}
+<title>Agregar Servicio</title>
+{% endblock %}
+
+
+<body>
+    {% block body %}
+
+    {% for servicio in servicios %}
+    <form style="margin: 30px ; width: 10rem;" action="" method="POST">
+        <div class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">
+            <div class="card-body">
+                <h5 class="card-title">{{servicio}}</h5>
+                    {% csrf_token %}
+                    <form action="" method="POST">
+                        <a  href="/usuarios/eliminar-servicio/{{servicio.id}}/" class="btn btn-danger">Borrar</a>
+                    </form>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="align-content: center; margin:2rem">
+                <a href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+        </div>
+    </form>
+
+</body>
+
+{% endblock %}
+
+</html>

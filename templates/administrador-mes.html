@@ -1,0 +1,79 @@
+{% extends "login.html" %}
+
+{% block titulo %}
+<title>Administrador-mes</title>
+{% endblock %}
+
+
+<body>
+
+    {% block body %}
+    {% if request.user.is_authenticated %}
+    <div>
+        {% for s in activo %}
+        <h1><span class="badge bg-secondary" style="margin-left: 40rem ; margin-top: 1rem;">{{s}}</span></h1>
+        {% endfor %}
+    </div>
+
+    <!-- BARRA IZQUIERDA -->
+    <div class="container text-center m-5">
+        <div class="row" style="height: 400px">
+            <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
+                {% for servicio in servicios %}
+                <div class="card" style="margin: 10px;">
+                    <a href="/usuarios/administrador-mes/{{servicio.id}}" type="button"
+                        class="btn btn-dark">{{servicio.servicio}}</a>
+                </div>
+                {% endfor %}
+                <h4>{{servicioactivo}}</h4>
+                {% if request.user.is_superuser %}
+                <div class="card" style="margin:10px">
+                    <a href="/usuarios/agregar-servicio/" type="button" class="btn btn-success">Agregar Servicio</a>
+                </div>
+                <div class="card" style="margin:10px">
+                    <a href="/usuarios/lista-eliminar-servicio/" type="button" class="btn btn-danger">Eliminar
+                        Servicio</a>
+                </div>
+                {% endif %}
+            </div>
+            <!-- FIN BARRA IZQUIERDA -->
+
+            <!-- CUERPO CENTRAL -->
+
+
+            <div class="col-10">
+                <div class="row">
+                    <div style="margin-left: 50px;" class="row" style="height: 800px;">
+
+                        {% for mes in meses %}
+                        <div class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">
+                            <div class="card-body">
+                                <h5 class="card-title">{{mes.nombre}}</h5>
+                                {% if mes.pagado %}
+                                <h2 style="color: green">PAGO</h2>
+                                {% else %}
+                                <h2 style="color: red">IMPAGO</h2>
+                                {% endif %}
+
+                                {% if request.user.is_superuser %}
+                                <a href="/usuarios/actualizar-mes/{{mes.id}}" class="btn btn-primary">Editar</a>
+                                {% else %}
+                                <a href="/usuarios/info-mes/{{mes.id}}" class="btn btn-primary">Detalle</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIN CUERPO CENTRAL -->
+    {% endif %}
+    {% endblock %}
+</body>
+
+
+
+</html>

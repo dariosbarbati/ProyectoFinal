@@ -1,0 +1,30 @@
+{% extends "login.html" %}
+
+{% block titulo %}
+<title>Eliminar Servicio</title>
+{% endblock %}
+
+
+<body>
+
+    {% block body %}
+<div style=" margin: 2rem;">
+    <h3>Esta seguro que quiere eliminar el siguiente servicio?</h3>
+    <div  class="card" style="width: 18rem;background-color:rgba(38, 41, 209, 0.116) ; margin-top: 2rem">
+        <div class="card-body">
+            <p>Nombre del producto: {{servicio.servicio}}</p>
+            <p>Descripcion del producto: {{servicio.descripcion}}</p>
+            <p>Precio del producto: {{servicio.precio}}</p>
+        </div>
+    </div>
+    <form style="margin: 1rem;" action="" method="POST">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="Borrar">
+        <a href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+    </form>
+</div>   
+</body>
+
+{% endblock %}
+
+</html>

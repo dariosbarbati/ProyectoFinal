@@ -1,23 +1,18 @@
 {% extends "login.html" %}
 
 {% block titulo %}
-    <title>Ver pagos</title>
+<title>Ver pagos</title>
 {% endblock %}
 
 
 <body>
 
-{% block body %}
+    {% block body %}
 
     <div class="container text-center m-5" style="height: 800px">
         <div class="row" style="height: 600px">
             <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
-                {% for servicio in servicios %}
-                <div class="card" style="margin: 10px;">
-                    <a href="/usuarios/info-mes/{{servicio.servicio}}" type="button"
-                        class="btn btn-dark">{{servicio.servicio}}</a>
-                </div>
-                {% endfor %}
+                <a href="/usuarios/administrador/" style="margin: 10px" class="btn btn-primary ">Volver</a>
             </div>
 
 
@@ -28,13 +23,14 @@
                         {% if mes.pagado %}
                         <div class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">
                             <div class="card-body">
-                                <h5 class="card-title">{{mes.nombre}}</h5>
+                                <h4 class="card-title">{{mes.nombre}}</h4>
+                                <h5 class="card-title">Servicio: {{mes.MesesServicio}}</h5>
                                 <h2 style="color: green">PAGO</h2>
                                 <h5 class="card-title">Monto: {{mes.precio}}</h5>
                                 <h5 class="card-title">{{mes.fecha}}</h5>
-                                {% endif %}
                             </div>
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

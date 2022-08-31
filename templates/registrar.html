@@ -8,6 +8,7 @@
     
 {% block body %}
 
+<div class="card" style="width: 40rem; align-items: center ; background-color:rgba(38, 41, 209, 0.116); margin-top:3rem; margin-left: 25rem;">
 <form style="margin: 2rem;" action="" method="POST">
 {% csrf_token %}
 
@@ -17,14 +18,20 @@
 
     </table>
 
-    <p><input type="submit" value="Registrate!!"></p>
-
+<div style="margin:3rem">
+    <span><input type="submit" value="Registrate!!"></span>
+    <a href="/users/login/" class="btn btn-primary" style="margin-left: 5rem;">Volver</a>
     </form>
+</div>
+</div>
 
     {% if error %}
         <p style="color:red;">{{error}}</p>
     {% endif %}
     
+    <br>
+    <br>
+
 {% endblock %}
 </body>
 
