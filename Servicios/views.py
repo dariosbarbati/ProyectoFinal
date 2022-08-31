@@ -1,8 +1,10 @@
 from datetime import date
+from lib2to3.pgen2 import token
 from re import search
 from django.shortcuts import render, redirect
 from Servicios.models import Meses, Servicios
 from Servicios.form import Formulario_servicio, Formulario_mes
+from django.utils.crypto import get_random_string
 listameses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
 
 def lista_meses(resquest):
@@ -35,10 +37,12 @@ def actualizar_mes(request, pk):
             mes.precio = form.cleaned_data['precio']
             mes.pagado = form.cleaned_data['pagado']
             mes.fecha = form.cleaned_data['fecha']
+            if mes.pagado :
+                mes.aleatorio = get_random_string(length=30)
+            else:
+                mes.aleatorio = 0               
             mes.save()
-
             return redirect(lista_meses_admin)
-
 
     elif request.method == 'GET':
         meses = Meses.objects.get(id=pk)
@@ -47,7 +51,8 @@ def actualizar_mes(request, pk):
             'nombre':meses.nombre,
             'precio':meses.precio, 
             'pagado':meses.pagado,
-            'fecha':meses.fecha,            
+            'fecha':meses.fecha,  
+            'token':meses.aleatorio,                       
             })
         context = {'form':form}
         return render(request, 'actualizar-mes.html', context=context)
@@ -77,7 +82,8 @@ def info_mes(request, pk):
         'nombre':meses.nombre,
         'precio':meses.precio, 
         'pagado':meses.pagado,
-        'fecha':meses.fecha,            
+        'fecha':meses.fecha,
+        'token':meses.aleatorio,            
         })
         context = {'form':form}
         return render(request, 'info-mes.html', context=context)
@@ -96,9 +102,10 @@ def agregar_servicio(request):
             for listames in listameses:
                 m = Meses.objects.create(
                 nombre = listames,
-                precio = 12,
+                precio = 0,
                 pagado = False,
                 fecha = date.today(),
+                aleatorio = 0,
                 )
                 m.MesesServicio = Servicios.objects.get(pk = s.id)
                 m.save()

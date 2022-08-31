@@ -33,7 +33,7 @@ def registrar(request):
         form = User_registration_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(lista_meses_admin) 
+            return redirect(login_request) 
         else:
             context = {'error':form.errors}
             form = User_registration_form()

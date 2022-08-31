@@ -50,7 +50,9 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar Mes" aria-label="Search" name='search'>
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
-      <a class="nav-link" href="/admin/">*Panel Admin*</a>
+      {% if request.user.is_superuser %}
+      <a style="margin-left:1rem"  class="btn btn-warning" href="/admin/">*Panel Admin*</a>
+      {% endif %}
       {% endif %}
     </div>
   </nav>
