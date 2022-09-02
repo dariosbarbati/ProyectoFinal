@@ -17,7 +17,8 @@ def lista_meses(resquest):
 def lista_meses_admin(request):
     data=Meses.objects.all()
     data2=Servicios.objects.all()
-    context={"meses": data[0:12], "servicios": data2}  #DEVUELVO UNICAMENTE LOS PRIMEROS 12 MESES
+    data3=data2[0:1]
+    context={"meses": data[0:12], "servicios": data2, "activo": data3}  #DEVUELVO UNICAMENTE LOS PRIMEROS 12 MESES
     return  render(request,"administrador-mes.html",context=context) 
 
 def lista_meses_admin_mes(request,pk):
@@ -38,7 +39,7 @@ def actualizar_mes(request, pk):
             mes.pagado = form.cleaned_data['pagado']
             mes.fecha = form.cleaned_data['fecha']
             if mes.pagado :
-                mes.aleatorio = get_random_string(length=30)
+                mes.aleatorio = get_random_string(length=15)
             else:
                 mes.aleatorio = 0               
             mes.save()
@@ -114,7 +115,8 @@ def agregar_servicio(request):
 
     if request.method == 'GET':
         form = Formulario_servicio()
-        context = {'form':form}
+        dato=Servicios.objects.all()
+        context = {'form':form,"servicios":dato }
         return render(request, 'agregar-servicio.html', context=context)
 
 

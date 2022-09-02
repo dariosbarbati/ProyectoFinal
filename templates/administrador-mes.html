@@ -8,10 +8,11 @@
 <body>
 
     {% block body %}
+
     {% if request.user.is_authenticated %}
     <div>
         {% for s in activo %}
-        <h1><span class="badge bg-secondary" style="margin-left: 40rem ; margin-top: 1rem;">{{s}}</span></h1>
+        <h1><span class="badge bg-secondary" style="margin-left: 40rem ; margin-top: 1rem;">{{s}} </span></h1>
         {% endfor %}
     </div>
 
@@ -32,15 +33,13 @@
                 </div>
                 <div class="card" style="margin:10px">
                     <a href="/usuarios/lista-eliminar-servicio/" type="button" class="btn btn-danger">Eliminar
-                        Servicio</a>
+                    Servicio</a>
                 </div>
                 {% endif %}
             </div>
             <!-- FIN BARRA IZQUIERDA -->
 
             <!-- CUERPO CENTRAL -->
-
-
             <div class="col-10">
                 <div class="row">
                     <div style="margin-left: 50px;" class="row" style="height: 800px;">
@@ -71,6 +70,7 @@
 
     <!-- FIN CUERPO CENTRAL -->
     {% endif %}
+
     {% endblock %}
 </body>
 

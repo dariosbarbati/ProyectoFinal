@@ -1,31 +1,40 @@
 {% extends "login.html" %}
 
 {% block titulo %}
-<title>Agregar Servicio</title>
+<title>Eliminar Servicio</title>
 {% endblock %}
 
 
 <body>
     {% block body %}
 
-    {% for servicio in servicios %}
-    <form style="margin: 30px ; width: 10rem;" action="" method="POST">
-        <div class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; ">
-            <div class="card-body">
-                <h5 class="card-title">{{servicio}}</h5>
-                    {% csrf_token %}
-                    <form action="" method="POST">
-                        <a  href="/usuarios/eliminar-servicio/{{servicio.id}}/" class="btn btn-danger">Borrar</a>
-                    </form>
+
+    <div class="container text-center m-5" style="height: 230px">
+        <div class="row" style="height: 350px">
+            <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
+                <a href="/usuarios/administrador/" style="margin: 10px" class="btn btn-primary ">Volver</a>
+            </div>
+
+
+            <div class="col-10">
+                <div class="row">
+                    <div style="margin-left: 50px;" class="row" style="height: 300px;">
+                        {% for servicio in servicios %}
+                        <div style="margin-left:1rem; " class="card">
+                            <h5 class="card-header">
+                                {{servicio}}
+                            </h5>
+                            <div class="card-body">
+                                <div class="card-title">{{servicio.descripcion}}</div>
+                                <a href="/usuarios/eliminar-servicio/{{servicio.id}}/" class="btn btn-danger">Borrar</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        {% endfor %}
-
-        <div style="align-content: center; margin:2rem">
-                <a href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
-        </div>
-    </form>
-
+    </div>
 </body>
 
 {% endblock %}

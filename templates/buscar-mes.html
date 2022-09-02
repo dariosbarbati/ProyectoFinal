@@ -8,24 +8,39 @@
 <body>
 
 {% block body %}   
-    {% for mes in mes %}                  
-    <div  class="card" style="width: 14rem;background-color:rgba(38, 41, 209, 0.116) ; margin: 3rem;">                        
-        <div class="card-body">
-            <h5 class="card-title">{{mes.nombre}}</h5>
-            <h5 class="card-title">{{mes.MesesServicio}}</h5>
-            {% if mes.pagado %}
-            <h2 style="color: green">PAGADO</h2>
-            <h5 class="card-title">Monto: {{mes.precio}}</h5>
-            {% else %}
-            <h2 style="color: red">IMPAGO</h2>
-            {% endif %}
+
+
+<div class="container text-center m-5" style="height: 100%">
+    <div class="row" style="height: auto">
+        <div class="card" style="width: 11rem;background-color:rgba(36, 85, 175, 0.253) ; ">
+            <a href="/usuarios/administrador/" style="margin: 10px" class="btn btn-primary ">Volver</a>
+        </div>
+
+
+        <div class="col-10">
+            <div class="row">
+                <div style="margin-left: 30px;" class="row">
+                    {% for mes in mes %}                  
+                    <div  class="card" style="width: 15rem;background-color:rgba(38, 41, 209, 0.116); margin:5px;">                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{mes.nombre}}</h5>
+                            <h5 class="card-title">{{mes.MesesServicio}}</h5>
+                            {% if mes.pagado %}
+                            <h2 style="color: green">PAGADO</h2>
+                            <h5 class="card-title">Monto: {{mes.precio}}</h5>
+                            {% else %}
+                            <h2 style="color: red">IMPAGO</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
-
-    {% endfor %}
-
-
-
-    <a style="margin-left: 3rem;" href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+</div>
 </body>
+
 {% endblock %}
+
+</html>

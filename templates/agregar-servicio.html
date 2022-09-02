@@ -9,6 +9,8 @@
 
 {% block body %}
 
+{% if servicios.count < 6 %}
+
     <form style="margin: 15px ;" action="" method="POST">
         {% csrf_token %}
 
@@ -18,11 +20,22 @@
 
         </table>
         <div style="align-content: center;">
-            <spam><input class="btn btn-primary" type="submit" value="Enviar"></p>
+            <spam><input class="btn btn-primary" type="submit" value="Enviar"></spam>
             <a href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
         </div>
     </form>
+{% else %}
 
+<div style="margin-top: 3rem;" class="alert alert-danger">Ya tienen demasiados servicios agregados! elimina alguno para poder agregar nuevos</div>
+
+<br>
+<a style="margin-left: 1rem;" href="/usuarios/administrador/" class="btn btn-primary">Volver</a>
+
+{% endif %}
+
+<br>
+<br>
+<br>
 </body>
 
 {% endblock %}

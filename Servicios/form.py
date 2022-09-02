@@ -6,7 +6,7 @@ class Formulario_mes(forms.Form):
     precio = forms.FloatField()
     pagado = forms.BooleanField(required=False)
     fecha = forms.DateField()
-    token = forms.CharField(max_length=30,required=False)
+    token = forms.CharField(max_length=15,required=False)
 
 class Formulario_servicio(forms.Form):
     servicio = forms.CharField(max_length=40) 

@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
-
 from django.contrib.auth.forms import AuthenticationForm
-
-from django.contrib.auth import login, logout, authenticate
-from Servicios.views import lista_meses_admin, lista_meses
+from django.contrib.auth import login, authenticate
+from Servicios.views import lista_meses_admin
 from users.forms import User_registration_form
 
 
@@ -18,7 +16,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                context = {'usuario': {user}}
+                # context = {'usuario': {user}}
                 return redirect(lista_meses_admin) 
 
         form = AuthenticationForm()
