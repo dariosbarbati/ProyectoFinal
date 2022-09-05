@@ -41,3 +41,5 @@ def registrar(request):
     elif request.method == 'GET':
         form = User_registration_form()
         return render(request, 'registrar.html', {'form': form})
+
+
