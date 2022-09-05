@@ -1,6 +1,6 @@
 QuienPago?
 
-La idea de la página es que puedas controlar quien te paga los meses en los diferentes servicios de streaming compartidos entre tu familia y amigos.
+La idea de la página es que puedas controlar quien te paga los meses de los diferentes servicios de streaming compartidos entre tu familia y amigos.
 Vos anotas quien te paga y ellos pueden ver qué meses abonaron asi como tambien descargar un comprobante con un token unico generado.
 
 Pasos para utilizar la página WEB
