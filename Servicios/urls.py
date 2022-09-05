@@ -1,6 +1,7 @@
 from django.urls import path
 from Servicios.views import lista_meses, actualizar_mes,\
-lista_meses_admin, buscar_mes, ver_pagos, info_mes, agregar_servicio,lista_meses_admin_mes, en_construccion, eliminar_servicio, ver_servicios
+lista_meses_admin, buscar_mes, ver_pagos, info_mes, agregar_servicio,\
+lista_meses_admin_mes, en_construccion, eliminar_servicio, ver_servicios, about_us
 
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('en-construccion/', en_construccion, name='en-construccin'),
     path('lista-eliminar-servicio/', ver_servicios, name='lista-eliminar-servicio'),
     path('eliminar-servicio/<int:pk>/', eliminar_servicio, name='eliminar-servicio'),
+    path('about-us/', about_us, name=('about_us'))
 ]

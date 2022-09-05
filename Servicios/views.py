@@ -134,3 +134,6 @@ def eliminar_servicio(request,pk):
         context={"servicio": dato}
         print("por get")   
         return render(request, 'eliminar-servicio.html', context=context)
+
+def about_us(request):
+    return render(request, 'about_us.html', context={})

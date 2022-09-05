@@ -13,6 +13,48 @@
   <title>Quien Pago?</title>
   {% endblock %}
 
+  <style>
+    .body {
+      background-color: bisque;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(rgba(5, 7, 12, 0.10), rgba(5, 7, 12, 0.90)), url(https://miro.medium.com/max/3452/1*cNMN7FAX_vklvPhWmAPfuA.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .body:before {
+      content: "";
+      width: 100%;
+      min-height: 90vh;
+      position: relative;
+    }
+    .contenedor1 {
+      background-color: dimgrey;
+      border: 2px solid white;
+      width: 500px;
+      border-radius: 5px;
+      padding: 5em;
+      box-shadow: 5px 8px 12px black;
+      background: linear-gradient(rgba(5, 7, 12, 0.70), rgba(5, 7, 12, 0.85));
+      color: #f1f1f1;
+    }
+    .formulario {
+      display: flex;
+      justify-content: center;
+    }
+    .botones {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .titulo {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,7 +73,7 @@
           <a class="nav-link" href="/usuarios/ver-pagos/">Ver Pagos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Acerca de</a>
+          <a class="nav-link" href="/usuarios/about-us/">Acerca de</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/users/logout/">Salir</a>
@@ -51,14 +93,42 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
       {% if request.user.is_superuser %}
-      <a style="margin-left:1rem"  class="btn btn-warning" href="/admin/">*Panel Admin*</a>
+      <a style="margin-left:1rem" class="btn btn-warning" href="/admin/">*Panel Admin*</a>
       {% endif %}
       {% endif %}
     </div>
   </nav>
 
   {% block body %}
+  <div class="body">
+    <div class="contenedor1">
 
+      <div class="titulo">
+        <h1> ¿Quién Pagó?</h1>
+      </div>
+
+      <div class="formulario">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <table>
+            {{form.as_table}}
+          </table>
+
+          <div class="botones">
+            <spam><input type="submit" class="btn btn-primary value=" Iniciar sesion></spam>
+            <a href="/users/registrar/" class="btn btn-primary">Registrate</a>
+          </div>
+        </form>
+      </div>
+      <br>
+
+      {% if error %}
+      <p style="color:red;">{{error}}</p>
+      {% endif %}
+
+    </div>
+
+    <!-- 
   <h1 style="text-align: center; margin-top: 2rem;"> QuienPago?</h1>
   <div style="margin-top:5rem; margin-left: 35rem; ">
     <form action="" method="POST">
@@ -81,12 +151,12 @@
     <p style="color:red;">{{error}}</p>
     {% endif %}
 
-  </div>
-  {% endblock %}
+  </div>-->
+  {% endblock %} 
 </body>
 
 <footer class="text-center text-white"
-  style="margin-top: 8rem; background-color: #f1f1f1; position: relative; bottom:0; width: 100%;">
+  style="background-color: #f1f1f1; position: relative;top: 6rem ; width: 100%;">
   <div class="container pt-4">
     <section class="mb-4">
 
